@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atheer Chat Screen - With Input</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+       
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        
+        :root {
+            --color-dark-background: #1a2233;
+            --color-chat-bubble: rgba(90, 99, 109, 0.5); 
+            --color-online-green: #4CD964;
+            --color-text-grey: #C0C0C0;
+            --color-nav-border: rgba(255, 255, 255, 0.1);
+            --color-input-field: rgba(90, 99, 109, 0.2); 
+            --color-send-button: #3F75D5; 
+        }
+
+       
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f2937, #0f172a); 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+       
+        .iphone-frame {
+            position: relative; 
+            max-width: 430px; 
+            min-height: 850px; 
+            width: 100%; 
+            height: 90vh; 
+            border: 12px solid #000;
+            border-radius: 50px; 
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden; 
+            background: var(--color-dark-background); 
+            display: flex;
+            flex-direction: column;
+        }
+ 
+        .watermark-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%; 
+            height: 85%;
+            object-fit: contain;
+            opacity: 0.1;
+            z-index: 5; 
+            pointer-events: none; 
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .dynamic-island {
+            width: 100px; height: 25px; background-color: black; border-radius: 20px;
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 20;
+        }
+        .status-bar {
+            position: relative; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 20px 5px 20px; color: white; z-index: 10;
+        }
+        
+        
+        .chat-container {
+            flex-grow: 1;
+            padding: 0 10px;
+            overflow-y: auto;
+            color: white;
+            padding-bottom: 20px;
+            z-index: 6; 
+            padding-bottom: 70px; 
+        }
+        .chat-container::-webkit-scrollbar { display: none; }
+        .chat-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+    
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 20px;
+            background-color: var(--color-chat-bubble);
+            color: white;
+            font-size: 16px;
+        }
+        
+       
+        .chat-bubble.other {
+            align-self: flex-start;
+            margin-right: auto;
+            border-bottom-left-radius: 5px; 
+        }
+        
+        
+        .chat-bubble.user {
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 5px; 
+        }
+
+       
+        .chat-date-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: var(--color-text-grey);
+            margin: 10px 0;
+            padding-top: 5px;
+        }
+
+       
+        .input-bar {
+           
+            width: 100%;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--color-dark-background); 
+            border-top: 1px solid var(--color-nav-border);
+            z-index: 40; 
+        }
+
+        .input-field {
+            flex-grow: 1;
+            background-color: var(--color-input-field);
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: white;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+
+        .input-icon {
+            color: var(--color-text-grey);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .send-button {
+            background-color: var(--color-send-button);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        
+        .bottom-nav-wrapper {
+            background-color: var(--color-dark-background);
+            z-index: 30;
+        }
+        
+        .bottom-nav {
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid var(--color-nav-border);
+            padding-bottom: 5px; 
+        }
+        .nav-item {
+            color: var(--color-text-grey);
+            font-size: 24px;
+            padding: 8px;
+            transition: color 0.2s;
+        }
+        .nav-item.active {
+            color: #FFFFFF;
+        }
+
+        
+        .home-indicator-line {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 100px;
+            z-index: 50; 
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <div class="iphone-frame">
+        
+        <div class="status-bar text-sm font-semibold">
+            <span class="text-white">12:22 </span>
+            <div class="flex items-center space-x-1 text-white">
+                <i class="fas fa-signal text-xs"></i>
+                <i class="fas fa-wifi text-sm"></i>
+                <i class="fas fa-battery-full text-base"></i>
+            </div>
+        </div>
+        <div class="dynamic-island"></div>
+
+         <img src="c:\Users\pCd\Desktop\DAR APP\LOGO.png" alt="DAR Logo Watermark" class="watermark-logo">
+        
+        <div class="px-5 py-3 border-b border-gray-700/50 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold text-white pl-2">Atheer</h1>
+                <div class="flex items-center pl-2">
+                    <div class="w-2 h-2 rounded-full mr-2" style="background-color: var(--color-online-green);"></div>
+                    <span class="text-xs" style="color: var(--color-text-grey);">Online</span>
+                </div>
+            </div>
+            <i class="fas fa-ellipsis-v text-xl text-white opacity-70"></i>
+        </div>
+
+        <div class="chat-container flex flex-col">
+            
+            <div class="chat-date-header">
+                <span class="mx-2">Today</span>
+                <span class="mx-2">15/9/2025</span>
+                <span class="mx-2">9:24 AM</span>
+            </div>
+
+            <div class="chat-bubble other">
+                Hello
+            </div>
+
+            <div class="chat-bubble user">
+                Hello
+            </div>
+
+            <div class="chat-bubble user">
+                Is the apartment available?
+            </div>
+
+            <div class="chat-bubble other">
+                Yes, it's currently available. Would you like to schedule a viewing?
+            </div>
+            <div class="chat-bubble user">
+                That would be great! What times are open this week?
+            </div>
+            <div class="chat-bubble other">
+                We have openings on Tuesday and Thursday afternoon.
+            </div>
+            
+        </div>
+
+        <div class="input-bar">
+            <i class="fas fa-paperclip input-icon"></i>
+            
+            <input type="text" placeholder="Type a message..." class="input-field">
+            
+            <div class="send-button">
+                <i class="fas fa-arrow-up"></i>
+            </div>
+        </div>
+
+        <div class="bottom-nav-wrapper">
+            <nav class="bottom-nav">
+                 <a href="ind_user.html" class="nav-item"><i class="fas fa-home"></i></a>
+                <a href="#" class="nav-item"><i class="fas fa-bell"></i></a>
+                <a href="map.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
+                <a href="#" class="nav-item"><i class="fas fa-comments"></i></a>
+                <a href="#" class="nav-item"><i class="fas fa-user-alt"></i></a>
+            </nav>
+        </div>
+        
+        <div class="home-indicator-line"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f2937, #0f172a); 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+       
+        .iphone-frame {
+            position: relative; max-width: 430px; min-height: 850px; 
+            width: 100%; height: 90vh; border: 12px solid #000;
+            border-radius: 50px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden; background: linear-gradient(180deg, #121827 0%, #1c273a 100%);
+        }
+        .dynamic-island {
+            width: 100px; height: 25px; background-color: black; border-radius: 20px;
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 20;
+        }
+        .status-bar {
+            position: absolute; top: 0; left: 0; right: 0; display: flex;
+            justify-content: space-between; align-items: center; padding: 10px 20px;
+            color: white; z-index: 10;
+        }
+        
+        .otp-input {
+            width: 60px; height: 60px; text-align: center; font-size: 24px;
+            font-weight: bold; background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent; border-radius: 12px; color: white;
+            caret-color: #1a75ff; transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .otp-input:focus {
+            outline: none; border-color: #1a75ff; 
+            box-shadow: 0 0 0 3px rgba(26, 117, 255, 0.3);
+        }
+        .otp-input[type=number]::-webkit-inner-spin-button,
+        .otp-input[type=number]::-webkit-outer-spin-button {
+           -webkit-appearance: none;
+            margin: 0;
+        }
+      
+        .submit-button {
+            transition: all 0.2s ease-in-out; background-color: #1a75ff; 
+            box-shadow: 0 4px 15px rgba(26, 117, 255, 0.4);
+        }
+        .submit-button:hover { background-color: #0d6ae0; }
+      
+        .overlay-logo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            opacity: 0.07; width: 80%; height: auto; pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame">
+        
+        <div class="status-bar text-sm font-semibold">
+            <span class="text-white-400">12:22 </span>
+            <div class="flex items-center space-x-1">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <span class="text-xs"> </span>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        <div class="dynamic-island"></div>
+
+        <div class="w-full h-full pt-24 px-8 flex flex-col items-center justify-start relative overflow-y-auto pb-4 text-center">
+            
+            <img src="c:\Users\pCd\Desktop\DAR APP\LOGO.png" alt="DAR Logo Watermark" class="overlay-logo object-contain">
+
+            <div class="text-6xl text-white mb-6">
+                <i class="fas fa-lock text-blue-400 mb-2"></i>
+            </div>
+            
+            <h1 class="text-3xl font-bold text-white mb-4">OTP Verification</h1>
+
+            <p class="text-gray-400 text-lg mb-10 max-w-xs">
+                We have sent an SMS with an activation code to your phone <span class="text-blue-400">*******346</span>
+            </p>
+
+            <form id="otpForm" class="flex space-x-4 mb-8">
+                <input type="number" class="otp-input" maxlength="1" id="otp-1" required>
+                <input type="number" class="otp-input" maxlength="1" id="otp-2" required>
+                <input type="number" class="otp-input" maxlength="1" id="otp-3" required>
+                <input type="number" class="otp-input" maxlength="1" id="otp-4" required>
+            </form>
+
+            <p class="text-gray-400 text-sm mb-12">
+                OTP not received? <a href="#" class="text-blue-400 font-semibold hover:text-blue-300">RESEND</a>
+            </p>
+
+            <button type="submit" form="otpForm" class="submit-button text-white font-bold py-4 rounded-xl text-xl w-full max-w-xs">
+                Submit
+            </button>
+            
+            <p id="feedback-message" class="mt-6 text-base font-medium hidden"></p>
+
+        </div>
+    </div>
+
+    <script>
+        
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.otp-input');
+            const otpForm = document.getElementById('otpForm');
+            const feedbackMessage = document.getElementById('feedback-message');
+            const correctOTP = '0000'; // The correct OTP for testing
+            const userType = getUrlParameter('user_type'); 
+
+           
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', () => {
+                    if (input.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && input.value.length === 0 && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+
+            
+            otpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                feedbackMessage.classList.add('hidden');
+
+                const enteredOTP = Array.from(inputs).map(input => input.value).join('');
+
+                if (enteredOTP === correctOTP) {
+                    feedbackMessage.textContent = 'OTP Verified! Redirecting to Profile...';
+                    feedbackMessage.classList.remove('hidden', 'text-red-400');
+                    feedbackMessage.classList.add('text-green-400');
+                    
+                    
+                    let redirectUrl;
+
+                    
+                    if (userType === 'individual') {
+                        redirectUrl = `ind_user.html?user_type=${userType}`;
+                    } else {
+                        
+                        redirectUrl = `profile_page.html?user_type=${userType}`; 
+                    }
+                    
+                    setTimeout(() => {
+                        window.location.href = redirectUrl; 
+                    }, 1000);
+                   
+
+                } else {
+                    feedbackMessage.textContent = 'Invalid OTP. Please try again.';
+                    feedbackMessage.classList.remove('hidden', 'text-green-400');
+                    feedbackMessage.classList.add('text-red-400');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

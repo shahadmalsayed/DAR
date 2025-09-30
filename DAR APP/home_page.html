@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home PageReal Estate Agent </title>
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f2937, #0f172a); 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .iphone-frame {
+            position: relative;
+            max-width: 430px; 
+            min-height: 850px; 
+            width: 100%;
+            height: 90vh;
+            border: 12px solid #000;
+            border-radius: 50px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            background: linear-gradient(180deg, #121827 0%, #1c273a 100%);
+            display: flex;
+            flex-direction: column;
+        }
+       
+        .dynamic-island {
+            width: 100px;
+            height: 25px;
+            background-color: black;
+            border-radius: 20px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+        }
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            color: white;
+            z-index: 10;
+        }
+       
+        .overlay-logo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            opacity: 0.07; width: 80%; height: auto; pointer-events: none;
+        }
+        
+        .nav-bar {
+            background-color: #121827; 
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .nav-icon {
+            color: #6b7280; 
+            transition: color 0.3s;
+        }
+        .nav-icon.active {
+            color: #1a75ff; 
+        }
+        
+        .search-input {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            width: 100%;
+        }
+
+       
+        .main-scroll-content::-webkit-scrollbar {
+            width: 5px; 
+        }
+
+       
+        .main-scroll-content::-webkit-scrollbar-track {
+            background: rgba(31, 41, 55, 0.1); 
+            border-radius: 8px;
+        }
+
+        
+        .main-scroll-content::-webkit-scrollbar-thumb {
+            background-color: rgba(96, 165, 250, 0.5); 
+            border-radius: 8px; 
+        }
+        
+       
+        .main-scroll-content::-webkit-scrollbar-thumb:hover {
+            background-color: #747981; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame">
+        
+        
+        <div class="status-bar text-sm font-semibold">
+            <span class="text-white-400">12:22 </span>
+            <div class="flex items-center space-x-1">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <span class="text-xs"> </span>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        <div class="dynamic-island"></div>
+
+        
+        <div class="w-full h-full pt-16 px-6 flex flex-col relative overflow-y-auto pb-20 main-scroll-content">        
+           <img src="c:\Users\pCd\Desktop\DAR APP\LOGO.png" alt="DAR Logo Watermark" class="overlay-logo object-contain">
+            
+            <div class="space-y-4 mb-6">
+                
+                <div class="flex items-center search-input">
+                    <i class="fas fa-search text-gray-400 mr-3"></i>
+                    <input type="text" placeholder="Search property type" class="w-full bg-transparent text-gray-300 focus:outline-none placeholder-gray-500">
+                </div>
+                
+                <div class="flex items-center search-input">
+                    <i class="fas fa-map-marker-alt text-gray-400 mr-3"></i>
+                    <input type="text" placeholder="Riyadh, Qurtubah" class="w-full bg-transparent text-gray-300 focus:outline-none placeholder-gray-500">
+                </div>
+            </div>
+
+           
+            <div class="space-y-6 pb-4">
+                
+               
+                <div class="bg-gray-800 bg-opacity-30 p-4 rounded-xl shadow-lg">
+                   
+                    <img src="c:\Users\pCd\Desktop\DAR APP\house 1.jfif" 
+                         alt="Modern Villa 1" 
+                         class="w-full h-auto object-cover rounded-lg mb-4">
+                    
+                    <div class="flex justify-between items-center border-t border-gray-700 pt-3">
+                        
+                        <div>
+                            <span class="text-yellow-400 text-xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </span>
+                        </div>
+                        
+                        <a href="#" class="text-gray-400 text-sm font-semibold flex items-center hover:text-blue-400">
+                            Reviews <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                
+                <div class="bg-gray-800 bg-opacity-30 p-4 rounded-xl shadow-lg">
+                   
+                    <img src="c:\Users\pCd\Desktop\DAR APP\house 2.jfif" 
+                         alt="Luxury Apartment 2" 
+                         class="w-full h-auto object-cover rounded-lg mb-4">
+                    
+                    <div class="flex justify-between items-center border-t border-gray-700 pt-3">
+                       
+                        <div>
+                            <span class="text-yellow-400 text-xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </span>
+                        </div>
+                       
+                        <a href="#" class="text-gray-400 text-sm font-semibold flex items-center hover:text-blue-400">
+                            Reviews <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-30 p-4 rounded-xl shadow-lg">
+                   
+                    <img src="c:\Users\pCd\Desktop\DAR APP\house3.jfif" 
+                         alt="Luxury Apartment 2" 
+                         class="w-full h-auto object-cover rounded-lg mb-4">
+                    
+                    <div class="flex justify-between items-center border-t border-gray-700 pt-3">
+                        
+                        <div>
+                            <span class="text-yellow-400 text-xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </span>
+                        </div>
+                       
+                        <a href="#" class="text-gray-400 text-sm font-semibold flex items-center hover:text-blue-400">
+                            Reviews <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-30 p-4 rounded-xl shadow-lg">
+                    
+                    <img src="c:\Users\pCd\Desktop\DAR APP\house 4.jfif" 
+                         alt="Luxury Apartment 2" 
+                         class="w-full h-auto object-cover rounded-lg mb-4">
+                    
+                    <div class="flex justify-between items-center border-t border-gray-700 pt-3">
+                       
+                        <div>
+                            <span class="text-yellow-400 text-xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </span>
+                        </div>
+                        
+                        <a href="#" class="text-gray-400 text-sm font-semibold flex items-center hover:text-blue-400">
+                            Reviews <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+       
+        <div class="nav-bar w-full py-3">
+            <div class="flex justify-around items-center max-w-lg mx-auto">
+               
+                <a href="./home_page.html" class="flex flex-col items-center">
+                    <i class="fas fa-home text-2xl nav-icon active"></i>
+                </a>
+                
+                <a href="#" class="flex flex-col items-center relative">
+                    <i class="fas fa-bell text-2xl nav-icon"></i>
+                    <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+                </a>
+                
+                
+                <a href="#" class="flex flex-col items-center text-4xl text-white bg-blue-600 rounded-full w-12 h-12 justify-center -mt-8 shadow-xl hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-plus text-xl"></i>
+                </a>
+                
+                 
+                <a href="#" class="flex flex-col items-center relative">
+                    <i class="fas fa-comment-dots text-2xl nav-icon"></i>
+                    <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+                </a>
+               
+                <a href="./profile_page.html" class="flex flex-col items-center">
+                    <i class="fas fa-user text-2xl nav-icon"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

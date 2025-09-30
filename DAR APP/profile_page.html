@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Agent Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f2937, #0f172a); 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+
+        }
+
+        
+        /* Phone Frame Styling */
+        .iphone-frame {
+            position: relative;
+            max-width: 430px; 
+            min-height: 850px; 
+            width: 100%;
+            height: 90vh;
+            border: 12px solid #000;
+            border-radius: 50px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            background: linear-gradient(180deg, #121827 0%, #1c273a 100%);
+            display: flex;
+            flex-direction: column;
+        }
+       
+        .dynamic-island {
+            width: 100px; height: 25px; background-color: black; border-radius: 20px;
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 20;
+        }
+        .status-bar {
+            position: absolute; top: 0; left: 0; right: 0; display: flex;
+            justify-content: space-between; align-items: center; padding: 10px 20px;
+            color: white; z-index: 10;
+        }
+       
+        .overlay-logo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            opacity: 0.07; width: 80%; height: auto; pointer-events: none;
+        }
+        
+        .nav-bar {
+            background-color: #121827; 
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .nav-icon {
+            color: #6b7280; 
+            transition: color 0.3s;
+        }
+        .nav-icon.active {
+            color: #1a75ff; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame">
+        
+        <div class="status-bar text-sm font-semibold">
+            <span class="text-white-400">12:22 </span>
+            <div class="flex items-center space-x-1">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <span class="text-xs"> </span>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        <div class="dynamic-island"></div>
+
+        <div class="w-full h-full pt-16 px-6 flex flex-col relative overflow-y-auto pb-20">
+            
+            <img src="c:\Users\pCd\Desktop\DAR APP\LOGO.png" alt="DAR Logo Watermark" class="overlay-logo object-contain">
+
+            <div class="bg-gray-800 bg-opacity-30 p-4 rounded-xl shadow-lg mb-6 mt-4">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-circle text-6xl text-gray-500 mr-4"></i>
+                        <div>
+                            <p class="text-white text-xl font-semibold">Atheer</p>
+                            <p class="text-blue-400 text-sm">Edit Profile</p>
+                        </div>
+                    </div>
+
+                    <div>
+                      <p class="text-sm text-gray-400 mb-1">FAL license</p>
+                        <div class="flex justify-center"> 
+                          <img src="c:\Users\pCd\Desktop\DAR APP\FAL.webp" alt="QR CODE" class="w-9 h-8 rounded block mx-auto" > 
+                        </div>
+                    </div>
+                        
+                </div>
+
+                <div class="space-y-2 text-gray-300 text-sm">
+                    <p class="flex items-center"><i class="fas fa-at w-4 mr-2 text-blue-400"></i> Atheer@gmail.com</p>
+                    <p class="flex items-center"><i class="fas fa-phone w-4 mr-2 text-blue-400"></i> +966 512345678</p>
+                    <p class="flex items-center"><i class="fas fa-map-marker-alt w-4 mr-2 text-blue-400"></i> Riyadh</p>
+                </div>
+
+               
+            </div>
+
+            <div class="bg-gray-800 bg-opacity-30 p-4 rounded-xl shadow-lg mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-white text-lg font-semibold">Reviews</p>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                </div>
+                <div class="border-t border-gray-700 pt-4">
+                    <p class="text-gray-300 text-sm mb-2">
+                        A smooth and convenient experience, the search and booking process was very fast. Well done!
+                    </p>
+                    <div class="text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+
+
+
+          <div id="post-input-area" class="bg-gray-700 p-4 rounded-xl shadow-lg mb-6">
+             <input type="text" placeholder="Post..." class="w-full bg-transparent text-gray-300 focus:outline-none">
+            </div>
+
+    </div>
+
+        <div class="nav-bar w-full py-3">
+            <div class="flex justify-around items-center max-w-lg mx-auto">
+                <a href="c:\Users\pCd\Desktop\DAR APP\home_page.html" class="flex flex-col items-center">
+                    <i class="fas fa-home text-2xl nav-icon"></i>
+                </a>
+                <a href="#" class="flex flex-col items-center relative">
+                    <i class="fas fa-bell text-2xl nav-icon"></i>
+                    <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+                </a>
+
+                
+                <a href="#" class="flex flex-col items-center text-4xl text-white bg-blue-600 rounded-full w-12 h-12 justify-center -mt-8 shadow-xl hover:bg-blue-700 transition duration-300">
+                    <i class="fas fa-plus text-xl"></i>
+                </a>
+                <a href="#" class="flex flex-col items-center relative">
+                    <i class="fas fa-comment-dots text-2xl nav-icon"></i>
+                    <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+                </a>
+                <a href="./profile_page.html" class="flex flex-col items-center">
+                    <i class="fas fa-user text-2xl nav-icon active"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+   <script>
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    window.onload = function() {
+        const userType = getUrlParameter('user_type');
+        const postInputArea = document.getElementById('post-input-area');
+        const falLicenseArea = document.getElementById('fal-license-area');
+
+        
+        if (!postInputArea || !falLicenseArea) {
+            console.error("Missing HTML elements: post-input-area or fal-license-area.");
+            return;
+        }
+        
+        
+        if (userType === 'agent') {
+            postInputArea.classList.remove('hidden');
+            falLicenseArea.classList.remove('hidden');
+            console.log('Mode: Real Estate Agent. Post/FAL license visible.');
+        } else {
+            
+            postInputArea.classList.add('hidden');
+            falLicenseArea.classList.add('hidden');
+            console.log(`Mode: ${userType || 'Default'}. Post/FAL license hidden.`);
+        }
+    };
+</script>
+</body>
+</html>

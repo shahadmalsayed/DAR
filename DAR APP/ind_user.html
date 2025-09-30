@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f2937, #0f172a); 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .iphone-frame {
+            position: relative; 
+            max-width: 430px; 
+            min-height: 850px; 
+            width: 100%; 
+            height: 90vh; 
+            border: 12px solid #000;
+            border-radius: 50px; 
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden; 
+            background: #101620; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        
+        .watermark-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            width: 70%; 
+            height: auto;
+            object-fit: contain;
+            opacity: 0.08; 
+            z-index: 5;
+            pointer-events: none; 
+        }
+       
+        .dynamic-island {
+            width: 100px; height: 25px; background-color: black; border-radius: 20px;
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 20;
+        }
+        .status-bar {
+            position: absolute; top: 0; left: 0; right: 0; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 20px; color: white; z-index: 10;
+        }
+
+       
+        .content-area {
+            flex-grow: 1;
+            padding: 50px 20px 0 20px;
+            overflow-y: auto;
+            color: #E5E7EB;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .content-area::-webkit-scrollbar {
+            display: none;
+        }
+
+        
+        .main-card {
+            background-color: #1a2233;
+            border-radius: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            margin-bottom: 24px;
+            position: relative; 
+            z-index: 10;
+        }
+
+       
+        .agent-info-card {
+            background-color: #1a2233;
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 24px;
+            position: relative; 
+            z-index: 10;
+        }
+        .agent-details {
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            gap: 20px;
+            align-items: center;
+        }
+        .license-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+        .qr-code {
+            width: 80px; 
+            height: 80px; 
+            border-radius: 8px; 
+            margin-top: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        
+        .review-card {
+            background-color: #1a2233; 
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            position: relative; 
+            z-index: 10;
+        }
+        .star-filled {
+            color: gold;
+            font-size: 18px;
+        }
+
+        
+        .bottom-nav {
+            background-color: #1a2233;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #2d3748;
+            border-radius: 0 0 50px 50px;
+            z-index: 30;
+            position: sticky; 
+            bottom: 0;
+            width: 100%;
+        }
+        .nav-item {
+            color: #9CA3AF;
+            font-size: 20px;
+            padding: 8px;
+            transition: color 0.2s;
+        }
+        .nav-item.active {
+            color: #FFFFFF;
+        }
+        
+       
+        .main-scroll-content::-webkit-scrollbar {
+            width: 5px; 
+        }
+        .main-scroll-content::-webkit-scrollbar-track {
+            background: rgba(31, 41, 55, 0.1);
+            border-radius: 8px;
+        }
+        .main-scroll-content::-webkit-scrollbar-thumb {
+            background-color: rgba(96, 165, 250, 0.5);
+            border-radius: 8px;
+        }
+        .main-scroll-content::-webkit-scrollbar-thumb:hover {
+            background-color: #747981;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame">
+        
+        <div class="status-bar text-sm font-semibold">
+            <span class="text-white-400">12:22 </span>
+            <div class="flex items-center space-x-1 text-white">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        <div class="dynamic-island"></div>
+
+        <img src="c:\Users\pCd\Desktop\DAR APP\LOGO.png" alt="DAR Logo Watermark" class="watermark-logo">
+
+        <div class="w-full h-full pt-16 px-6 flex flex-col relative overflow-y-auto pb-20 main-scroll-content">
+            
+            <div class="main-card p-0 pt-3">
+                <h2 class="text-lg font-bold text-center mb-3 px-4 text-white">Riyadh , Qurtubah</h2>
+                <div class="bg-gray-800 bg-opacity-30 p-4 rounded-xl ">
+                    <img src="c:\Users\pCd\Desktop\DAR APP\house 2.jfif" alt="Property Image" class="w-full h-auto object-cover rounded-lg mb-4">
+                </div>
+
+                <div class="agent-info-card">
+                <h3 class="text-sm font-medium text-gray-400 mb-3">Real estate agent information</h3>
+                <div class="agent-details">
+                    <div class="contact-info text-sm">
+                        <p class="text-white font-semibold mb-1">Atheer@gmail.com</p>
+                        <p class="text-white font-semibold mb-3">+966 512345678</p>
+                        <a href="chat.html" class="send-message-link text-blue-400 font-medium cursor-pointer hover:text-blue-300">Sent a message</a>
+                    </div>
+                    <div class="license-info">
+                        <p class="mb-1 text-white font-bold">FAL License</p>
+                        <img src="c:\Users\pCd\Desktop\DAR APP\FAL.webp" alt="FAL License QR Code" class="qr-code">
+                    </div>
+                </div>
+            </div>
+            </div>          
+            <div class="reviews-section mt-6 pb-20">
+                <h3 class="text-xl font-bold text-white mb-4">Customer Reviews</h3>
+
+                <div class="review-card">
+                    <p class="text-gray-300 mb-2">A smooth and convenient experience, the search and booking process was very fast. Well done!</p>
+                    <div class="rating flex space-x-0.5">
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <p class="text-gray-300 mb-2">The agent was highly responsive and professional throughout the entire transaction. Highly recommend!</p>
+                    <div class="rating flex space-x-0.5">
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <p class="text-gray-300 mb-2">Found my perfect apartment thanks to this service. The agent was knowledgeable and guided me through everything.</p>
+                    <div class="rating flex space-x-0.5">
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="text-gray-300 mb-2">The listing was accurate and the agent was punctual for the viewing. Excellent service!</p>
+                    <div class="rating flex space-x-0.5">
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="text-gray-300 mb-2">Very impressed with the efficiency. Closed the deal much faster than expected.</p>
+                    <div class="rating flex space-x-0.5">
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p class="text-gray-300 mb-2">Professional, friendly, and highly recommended. They made the house-hunting process simple.</p>
+                    <div class="rating flex space-x-0.5">
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                        <span class="star-filled">★</span>
+                    </div>
+                </div>
+                <div class="h-10"></div>
+            </div>
+        </div>
+
+      <nav class="bottom-nav">
+          <a href="#" class="nav-item active"><i class="fas fa-home"></i></a>
+          <a href="#" class="nav-item"><i class="fas fa-bell"></i></a>
+          <a href="map.html" class="nav-item"><i class="fas fa-map-marker-alt"></i></a>
+          <a href="chat.html" class="nav-item"><i class="fas fa-comments"></i></a>
+          <a href="#" class="nav-item"><i class="fas fa-user-alt"></i></a>
+      </nav>
+
+    </div>
+</body>
+</html>
